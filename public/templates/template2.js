@@ -1,52 +1,66 @@
-// JavaScript cho chức năng tìm kiếm
-function searchFunction() {
-  var input, filter, ul, li, a, i, txtValue;
-  input = document.getElementById("searchInput");
-  filter = input.value.toUpperCase();
-  ul = document.getElementById("myUL");
-  li = ul.getElementsByTagName("li");
+function allowDrop(event) {
+  event.preventDefault();
+}
 
-  // Lặp qua tất cả các mục danh sách và ẩn những người không phù hợp với truy vấn tìm kiếm
-  for (i = 0; i < li.length; i++) {
-    a = li[i].getElementsByTagName("a")[0];
-    txtValue = a.textContent || a.innerText;
-    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-      li[i].style.display = "";
-    } else {
-      li[i].style.display = "none";
+function drag(event) {
+  event.dataTransfer.setData("text", event.target.id);
+}
+
+function drop(event) {
+  event.preventDefault();
+  var data = event.dataTransfer.getData("text");
+  var copy = document.getElementById(data).cloneNode(true);
+  event.target.appendChild(copy);
+}
+
+// Thêm sự kiện kéo cho mỗi component
+var draggables = document.getElementsByClassName("draggable");
+for (var i = 0; i < draggables.length; i++) {
+  draggables[i].addEventListener("dragstart", drag);
+}
+
+// Thêm hiệu ứng khi component được kéo vào drop zone
+var dropZone = document.getElementById("drop-zone");
+dropZone.addEventListener("dragover", function () {
+  this.classList.add("drag-over");
+});
+
+dropZone.addEventListener("dragleave", function () {
+  this.classList.remove("drag-over");
+});
+
+// Thêm mã JavaScript để xử lý sự kiện click và chỉnh sửa
+var editModal = document.getElementById("edit-modal");
+var editForm = document.getElementById("edit-form");
+var contentInput = document.getElementById("content");
+var currentComponent;
+
+// Khi người dùng click vào một component trong drop zone
+document
+  .getElementById("drop-zone")
+  .addEventListener("click", function (event) {
+    if (event.target.classList.contains("draggable")) {
+      currentComponent = event.target;
+      contentInput.value = currentComponent.innerHTML;
+      editModal.style.display = "block";
     }
-  }
-}
+  });
 
-// JavaScript cho slideshow hình ảnh
-var slideIndex = 0;
-showSlides();
+// Khi người dùng click vào nút đóng (x) trên modal
+document.getElementsByClassName("close")[0].onclick = function () {
+  editModal.style.display = "none";
+};
 
-function showSlides() {
-  var i;
-  var slides = document.getElementsByClassName("mySlides");
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
-  }
-  slideIndex++;
-  if (slideIndex > slides.length) {
-    slideIndex = 1;
-  }
-  slides[slideIndex - 1].style.display = "block";
-  setTimeout(showSlides, 2000); // Thay đổi hình ảnh mỗi 2 giây
-}
+// Khi người dùng cập nhật nội dung thông qua form chỉnh sửa
+editForm.onsubmit = function (event) {
+  event.preventDefault();
+  currentComponent.innerHTML = contentInput.value;
+  editModal.style.display = "none";
+};
 
-// JavaScript cho form đăng nhập
-function loginFunction() {
-  var username = document.getElementById("username").value;
-  var password = document.getElementById("password").value;
-
-  // Kiểm tra thông tin đăng nhập (ví dụ đơn giản)
-  if (username == "user" && password == "pass") {
-    alert("Đăng nhập thành công!");
-    // Chuyển hướng người dùng đến trang chủ hoặc trang họ muốn đến sau khi đăng nhập
-    window.location = "home.html"; // Thay đổi 'home.html' thành trang bạn muốn chuyển đến
-  } else {
-    alert("Tên đăng nhập hoặc mật khẩu không chính xác!");
+// Thêm mã để đóng modal khi người dùng click ra ngoài modal
+window.onclick = function (event) {
+  if (event.target == editModal) {
+    editModal.style.display = "none";
   }
-}
+};

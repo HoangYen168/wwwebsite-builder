@@ -1,51 +1,39 @@
 <!DOCTYPE html>
 <html lang="vi">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="styles.css">
-<title>Trang Web Của Bạn</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Website Builder Của Bạn</title>
+  </head>
+  <body>
+    <header>
+      <h1>Website Builder Của Bạn</h1>
+    </header>
+    <div id="edit-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">×</span>
+        <form id="edit-form">
+          <label for="content">Nội dung:</label>
+          <textarea id="content" name="content"></textarea>
+          <input type="submit" value="Cập nhật" />
+        </form>
+      </div>
+    </div>
+    <!-- Khu vực chứa các component có thể kéo -->
+    <div id="components-container">
+      <div class="draggable" draggable="true" id="component-text">Văn Bản</div>
+      <div class="draggable" draggable="true" id="component-image">
+        Hình Ảnh
+      </div>
+      <!-- Thêm các component khác tại đây -->
+    </div>
 
-<header>
-<h1>Tiêu Đề Trang Web</h1>
-</header>
+    <!-- Khu vực có thể thả component vào -->
+    <div id="drop-zone" ondrop="drop(event)" ondragover="allowDrop(event)">
+      <p>Kéo component vào đây</p>
+    </div>
 
-<div id="search-container">
-<form action="/search" method="get">
-<input type="text" placeholder="Tìm kiếm..." name="search">
-<input type="submit" value="Tìm Kiếm">
-</form>
-</div>
-
-<div id="slideshow-container">
-<div class="mySlides">
-<img src="img1.jpg" style="width:100%">
-</div>
-
-<div class="mySlides">
-<img src="img2.jpg" style="width:100%">
-</div>
-
-<div class="mySlides">
-<img src="img3.jpg" style="width:100%">
-</div>
-</div>
-
-<div id="login-container">
-<h2>Đăng Nhập</h2>
-<form class="login-form" action="/submit-your-login-form" method="post">
-<input type="text" id="username" placeholder="Tên đăng nhập" name="username" required>
-<input type="password" id="password" placeholder="Mật khẩu" name="password" required>
-<input type="submit" value="Đăng nhập">
-</form>
-</div>
-
-<footer>
-<p>Bản quyền © 2024 Của Bạn</p>
-</footer>
-
-<script src="scripts.js"></script>
-</body>
+    <script src="scripts.js"></script>
+  </body>
 </html>
