@@ -52,10 +52,14 @@ document.getElementsByClassName("close")[0].onclick = function () {
 };
 
 // Khi người dùng cập nhật nội dung thông qua form chỉnh sửa
-editForm.onsubmit = function (event) {
-  event.preventDefault();
-  currentComponent.innerHTML = contentInput.value;
-  editModal.style.display = "none";
+// Mở rộng hàm xử lý sự kiện submit để cập nhật định dạng chữ
+editForm.onsubmit = function(event) {
+event.preventDefault();
+currentComponent.innerHTML = contentInput.value;
+currentComponent.style.color = document.getElementById('font-color').value;
+currentComponent.style.fontSize = document.getElementById('font-size').value + 'px';
+currentComponent.style.fontFamily = document.getElementById('font-family').value;
+editModal.style.display = 'none';
 };
 
 // Thêm mã để đóng modal khi người dùng click ra ngoài modal
