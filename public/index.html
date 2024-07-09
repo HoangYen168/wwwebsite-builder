@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Builder</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="template-selector">
+        <label for="template-select">Chọn template:</label>
+        <select id="template-select">
+            <option value="template1">Template 1</option>
+            <option value="template2">Template 2</option>
+            <option value="template3">Template 3</option>
+            <option value="template4">Template 4</option>
+            <option value="template5">Template 5</option>
+            <option value="template6">Template 6</option>
+            <!-- Thêm các option template khác nếu có -->
+        </select>
+        <button id="load-template-btn">Tải template</button>
+    </div>
+    <div class="editor">
+        <textarea id="html-editor" placeholder="HTML"></textarea>
+        <textarea id="css-editor" placeholder="CSS"></textarea>
+        <textarea id="js-editor" placeholder="JavaScript"></textarea>
+    </div>
+    <iframe id="preview" srcdoc="<p>Preview</p>"></iframe>
+    <div class="buttons">
+        <button onclick="downloadFile('html')">Download HTML</button>
+        <button onclick="downloadFile('css')">Download CSS</button>
+        <button onclick="downloadFile('js')">Download JavaScript</button>
+        <button onclick="publishWebsite()">Publish</button>
+    </div>
+    <div id="message"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip-utils/0.1.0/jszip-utils.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

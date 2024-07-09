@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đăng Nhập/Đăng Ký</title>
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Thêm link cho Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="form-container">
+      <form id="loginForm">
+        <h2><i class="fas fa-sign-in-alt"></i> Đăng Nhập</h2>
+        <div class="input-group">
+          <i class="fas fa-user input-icon"></i>
+          <input type="email" placeholder="Email" required />
+        </div>
+        <div class="input-group">
+          <i class="fas fa-lock input-icon"></i>
+          <input type="password" placeholder="Mật khẩu" required />
+        </div>
+        <button type="submit">
+          <i class="fas fa-unlock-alt"></i> Đăng nhập
+        </button>
+      </form>
+
+      <form id="registerForm" style="display: none">
+        <h2>Đăng Ký</h2>
+        <input type="text" placeholder="Tên đầy đủ" required />
+        <input
+          type="email"
+          placeholder="Email"
+          required
+          oninput="validateEmail(this)"
+        />
+        <input
+          type="password"
+          placeholder="Mật khẩu"
+          required
+          id="password"
+          oninput="validatePassword(this)"
+        />
+        <input
+          type="password"
+          placeholder="Xác nhận mật khẩu"
+          required
+          id="confirmPassword"
+          oninput="validatePasswordMatch()"
+        />
+        <span class="toggle-password" onclick="togglePasswordVisibility()"
+          >Hiển thị</span
+        >
+        <button type="submit">Đăng ký</button>
+        <p class="form-message" id="formMessage"></p>
+      </form>
+
+      <div class="switch-form">
+        <p>
+          Bạn chưa có tài khoản?
+          <span onclick="showRegisterForm()">Đăng ký ngay</span>
+        </p>
+        <p>
+          Bạn đã có tài khoản? <span onclick="showLoginForm()">Đăng nhập</span>
+        </p>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

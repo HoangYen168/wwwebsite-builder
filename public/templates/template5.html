@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Upload Hình Ảnh</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="upload-container">
+      <div id="dropArea" class="drop-area">
+        <h2>Kéo và thả hình ảnh vào đây</h2>
+        <input type="file" id="imageInput" multiple style="display: none" />
+        <input type="text" id="imageUrl" placeholder="Hoặc nhập URL hình ảnh" />
+        <button onclick="addImage()">Thêm Hình Ảnh</button>
+      </div>
+      <div id="imageDisplay" class="image-display"></div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

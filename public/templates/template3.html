@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template 3</title>
+    <link rel="stylesheet" href="template4.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to Template 3</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Projects</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="about">
+            <h2>About Us</h2>
+            <p>This is a complex HTML template with advanced features and image upload.</p>
+        </section>
+        <section id="projects">
+            <h2>Our Projects</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/150" alt="Project 1" data-index="0">
+                    <p>Project 1</p>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/150" alt="Project 2" data-index="1">
+                    <p>Project 2</p>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/150" alt="Project 3" data-index="2">
+                    <p>Project 3</p>
+                </div>
+            </div>
+            <input type="file" id="file-input" name="file-input" accept="image/*" style="display:none;">
+        </section>
+        <section id="contact">
+            <h2>Contact Us</h2>
+            <form id="contact-form">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" required></textarea>
+                <button type="submit">Submit</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Template 3</p>
+    </footer>
+    <script src="template4.js"></script>
+</body>
+</html>
