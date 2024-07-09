@@ -13,15 +13,33 @@
 </header>
 
 <div id="search-container">
-<!-- Chức năng tìm kiếm sẽ được thêm vào đây -->
+<form action="/search" method="get">
+<input type="text" placeholder="Tìm kiếm..." name="search">
+<input type="submit" value="Tìm Kiếm">
+</form>
 </div>
 
 <div id="slideshow-container">
-<!-- Slideshow hình ảnh sẽ được thêm vào đây -->
+<div class="mySlides">
+<img src="img1.jpg" style="width:100%">
+</div>
+
+<div class="mySlides">
+<img src="img2.jpg" style="width:100%">
+</div>
+
+<div class="mySlides">
+<img src="img3.jpg" style="width:100%">
+</div>
 </div>
 
 <div id="login-container">
-<!-- Form đăng nhập sẽ được thêm vào đây -->
+<h2>Đăng Nhập</h2>
+<form class="login-form" action="/submit-your-login-form" method="post">
+<input type="text" id="username" placeholder="Tên đăng nhập" name="username" required>
+<input type="password" id="password" placeholder="Mật khẩu" name="password" required>
+<input type="submit" value="Đăng nhập">
+</form>
 </div>
 
 <footer>
