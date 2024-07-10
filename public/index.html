@@ -10,13 +10,11 @@
     <div class="template-selector">
         <label for="template-select">Chọn template:</label>
         <select id="template-select">
-            <option value="template1">Template 1</option>
-            <option value="template2">Template 2</option>
-            <option value="template3">Template 3</option>
-            <option value="template4">Template 4</option>
-            <option value="template5">Template 5</option>
-            <option value="template6">Template 6</option>
-            <!-- Thêm các option template khác nếu có -->
+            <option value="">Chọn template</option>
+            <option value="template2">Template 1</option>
+            <option value="template3">Template 2</option>
+            <option value="template4">Template 3</option>
+            <option value="template5">Template 4</option>
         </select>
         <button id="load-template-btn">Tải template</button>
     </div>
@@ -25,14 +23,21 @@
         <textarea id="css-editor" placeholder="CSS"></textarea>
         <textarea id="js-editor" placeholder="JavaScript"></textarea>
     </div>
-    <iframe id="preview" srcdoc="<p>Preview</p>"></iframe>
+    <div id="message"></div>
     <div class="buttons">
         <button onclick="downloadFile('html')">Download HTML</button>
         <button onclick="downloadFile('css')">Download CSS</button>
         <button onclick="downloadFile('js')">Download JavaScript</button>
+        <button id="edit-template-btn">Edit Template</button>
         <button onclick="publishWebsite()">Publish</button>
     </div>
-    <div id="message"></div>
+    <div id="edit-options"></div>
+    <div class="edit-buttons">
+        <button id="save-changes-btn">Lưu thay đổi</button>
+        <button id="cancel-changes-btn">Hủy</button>
+    </div>
+    <iframe id="preview" srcdoc="<p>Preview</p>"></iframe>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip-utils/0.1.0/jszip-utils.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
