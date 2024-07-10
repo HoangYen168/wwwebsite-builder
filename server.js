@@ -1,15 +1,15 @@
 const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
 const path = require('path');
-
 const app = express();
 const PORT = 3000;
 
-app.use(cors());
-app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static('public'));
+
+app.get('/templates/:template', (req, res) => {
+  const template = req.params.template;
+  res.sendFile(path.join(__dirname, `public/templates/${template}`));
+});
 
 app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+  console.log(`Server is running on http://localhost:${PORT}`);
 });

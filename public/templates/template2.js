@@ -1,70 +1,86 @@
-function allowDrop(event) {
-  event.preventDefault();
-}
+document.addEventListener('DOMContentLoaded', () => {
+  console.log('Template 2 JavaScript is loaded.');
 
-function drag(event) {
-  event.dataTransfer.setData("text", event.target.id);
-}
+  const sections = document.querySelectorAll('main section');
+  const navLinks = document.querySelectorAll('nav ul li a');
+  const fileInput = document.getElementById('file-input');
+  const galleryItems = document.querySelectorAll('.gallery-item img');
+  const mainTitle = document.getElementById('main-title');
+  let currentElement = null;
 
-function drop(event) {
-  event.preventDefault();
-  var data = event.dataTransfer.getData("text");
-  var copy = document.getElementById(data).cloneNode(true);
-  event.target.appendChild(copy);
-}
-
-// Thêm sự kiện kéo cho mỗi component
-var draggables = document.getElementsByClassName("draggable");
-for (var i = 0; i < draggables.length; i++) {
-  draggables[i].addEventListener("dragstart", drag);
-}
-
-// Thêm hiệu ứng khi component được kéo vào drop zone
-var dropZone = document.getElementById("drop-zone");
-dropZone.addEventListener("dragover", function () {
-  this.classList.add("drag-over");
-});
-
-dropZone.addEventListener("dragleave", function () {
-  this.classList.remove("drag-over");
-});
-
-// Thêm mã JavaScript để xử lý sự kiện click và chỉnh sửa
-var editModal = document.getElementById("edit-modal");
-var editForm = document.getElementById("edit-form");
-var contentInput = document.getElementById("content");
-var currentComponent;
-
-// Khi người dùng click vào một component trong drop zone
-document
-  .getElementById("drop-zone")
-  .addEventListener("click", function (event) {
-    if (event.target.classList.contains("draggable")) {
-      currentComponent = event.target;
-      contentInput.value = currentComponent.innerHTML;
-      editModal.style.display = "block";
-    }
+  navLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const target = document.querySelector(link.getAttribute('href'));
+          sections.forEach(section => section.classList.add('hidden'));
+          target.classList.remove('hidden');
+      });
   });
 
-// Khi người dùng click vào nút đóng (x) trên modal
-document.getElementsByClassName("close")[0].onclick = function () {
-  editModal.style.display = "none";
-};
+  document.body.addEventListener('contextmenu', (e) => {
+      e.preventDefault();
+      if (e.target.tagName === 'IMG' && e.target.parentElement.classList.contains('gallery-item')) {
+          currentElement = e.target;
+          fileInput.click();
+      }
+  });
 
-// Khi người dùng cập nhật nội dung thông qua form chỉnh sửa
-// Mở rộng hàm xử lý sự kiện submit để cập nhật định dạng chữ
-editForm.onsubmit = function(event) {
-event.preventDefault();
-currentComponent.innerHTML = contentInput.value;
-currentComponent.style.color = document.getElementById('font-color').value;
-currentComponent.style.fontSize = document.getElementById('font-size').value + 'px';
-currentComponent.style.fontFamily = document.getElementById('font-family').value;
-editModal.style.display = 'none';
-};
+  fileInput.addEventListener('change', (event) => {
+      const file = event.target.files[0];
+      if (file && currentElement) {
+          const reader = new FileReader();
+          reader.onload = (e) => {
+              currentElement.src = e.target.result;
+              alert('Image uploaded successfully!');
+          };
+          reader.readAsDataURL(file);
+      } else {
+          alert('Please select an image to upload.');
+      }
+  });
 
-// Thêm mã để đóng modal khi người dùng click ra ngoài modal
-window.onclick = function (event) {
-  if (event.target == editModal) {
-    editModal.style.display = "none";
-  }
-};
+  galleryItems.forEach(item => {
+      item.setAttribute('draggable', true);
+
+      item.addEventListener('dragstart', (e) => {
+          e.dataTransfer.setData('text/plain', e.target.dataset.index);
+          e.target.classList.add('dragging');
+      });
+
+      item.addEventListener('dragend', (e) => {
+          e.target.classList.remove('dragging');
+      });
+
+      item.addEventListener('dragover', (e) => {
+          e.preventDefault();
+      });
+
+      item.addEventListener('drop', (e) => {
+          e.preventDefault();
+          const draggedIndex = e.dataTransfer.getData('text/plain');
+          const draggedElement = document.querySelector(`img[data-index='${draggedIndex}']`);
+          const dropTarget = e.target;
+
+          if (draggedElement !== dropTarget) {
+              const draggedParent = draggedElement.parentElement;
+              const dropTargetParent = dropTarget.parentElement;
+
+              draggedParent.appendChild(dropTarget);
+              dropTargetParent.appendChild(draggedElement);
+          }
+      });
+  });
+
+  mainTitle.addEventListener('click', () => {
+      window.location.reload();
+  });
+
+  document.querySelectorAll('nav ul li').forEach(li => {
+      li.addEventListener('click', (e) => {
+          e.preventDefault();
+          const target = document.querySelector(li.querySelector('a').getAttribute('href'));
+          sections.forEach(section => section.classList.add('hidden'));
+          target.classList.remove('hidden');
+      });
+  });
+});
